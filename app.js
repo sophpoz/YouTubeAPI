@@ -25,9 +25,18 @@ function showResults(results) {
 	var html = "";
 	console.log(results);
 	$.each(results.items, function(index,value){
-		//console.log(value);
 		html += '<p><a href="https://www.youtube.com/watch?v='+ value.id.videoId +'">';
 		html += '<img src=" '+ value.snippet.thumbnails.medium.url + '"/></a></p>';
 	});
 	$('#search-results').html(html);
+	//next page 
+	nextPageToken = results.nextPageToken;
+	$('#next').click(function(){
+	console.log(results.nextPageToken);
+		function nextPage() {
+		showResults(results, nextPageToken);
+	}
+	})
 }
+
+
